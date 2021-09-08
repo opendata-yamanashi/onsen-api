@@ -3,8 +3,10 @@ from fastapi import FastAPI
 import pandas as pd
 import tabula
 import json
+import os
 
-app = FastAPI(root_path="/api/onsen")
+root_path = os.getenv("ROOT_PATH", "")
+app = FastAPI(root_path=root_path)
 
 @app.get("/")
 def read_root():

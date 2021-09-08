@@ -4,7 +4,7 @@ import pandas as pd
 import tabula
 import json
 
-app = FastAPI()
+app = FastAPI(root_path="/api/onsen")
 
 @app.get("/")
 def read_root():

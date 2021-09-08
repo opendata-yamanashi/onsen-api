@@ -6,7 +6,10 @@ import json
 import os
 
 root_path = os.getenv("ROOT_PATH", "")
-app = FastAPI(root_path=root_path)
+app = FastAPI(
+    title="温泉利用施設API",
+    root_path=root_path
+)
 
 @app.get("/")
 def read_root():

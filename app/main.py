@@ -34,7 +34,6 @@ def check_columns(df, previous_df):
 def get_data():
     previous_df = pd.DataFrame()
 
-    # dfs = tabula.read_pdf("https://www.pref.yamanashi.jp/taiki-sui/documents/h3012012.pdf", lattice=True, pages = 'all')
     dfs = tabula.read_pdf("h3012011.pdf", lattice=True, pages = 'all')
 
     # データ結合

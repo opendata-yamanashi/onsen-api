@@ -13,13 +13,15 @@ app = FastAPI(
 
 @app.get("/")
 def read_root():
-    data = get_data()
+    path = "h3012011.pdf"
+    data = get_data(path)
     json_data = data.to_json(orient = 'records')
     return json.loads(json_data)
 
 @app.get("/area/{area}")
 def read_item(area: str):
-    data = get_data()
+    path = "h3012011.pdf"
+    data = get_data(path)
     df_mask = data['市町村名'] == area
     data = data[df_mask]
     json_data = data.to_json(orient = 'records')
@@ -31,10 +33,10 @@ def check_columns(df, previous_df):
     diff2 = set(previous_df.keys()) - set(df.keys())
     return (len(diff1) == 0 and len(diff2) == 0)
 
-def get_data():
+def get_data(path):
     previous_df = pd.DataFrame()
 
-    dfs = tabula.read_pdf("h3012011.pdf", lattice=True, pages = 'all')
+    dfs = tabula.read_pdf(path, lattice=True, pages = 'all')
 
     # データ結合
     for df in dfs:

@@ -58,7 +58,3 @@ def get_data(path):
         previous_df = df
     
     return previous_df
-
-if __name__ == '__main__':
-    data = get_data()
-    print(data)

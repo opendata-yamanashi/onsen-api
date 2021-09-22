@@ -17,14 +17,14 @@ app = FastAPI(
 
 @app.get("/")
 def read_root():
-    download_file(target_url)
+    download_file_if_needed(target_url)
     data = get_data(file_name)
     json_data = data.to_json(orient = 'records')
     return json.loads(json_data)
 
 @app.get("/area/{area}")
 def read_item(area: str):
-    download_file(target_url)
+    download_file_if_needed(target_url)
     data = get_data(file_name)
     df_mask = data['市町村名'] == area
     data = data[df_mask]
@@ -37,9 +37,13 @@ def check_columns(df, previous_df):
     diff2 = set(previous_df.keys()) - set(df.keys())
     return (len(diff1) == 0 and len(diff2) == 0)
 
-def download_file(url):
+def download_file_if_needed(url):
+    """ローカルにデータファイルがない場合は、データファイルをダウンロードする"""
+    if (os.path.exists(file_name)):
+        return
+    
     data = requests.get(url).content
-    with open(file_name ,mode='wb') as f: # wb でバイト型を書き込める
+    with open(file_name ,mode='wb') as f:
         f.write(data)
 
 def get_data(path):

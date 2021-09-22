@@ -7,7 +7,7 @@
 - https://opendata.yamanashi.dev/api/onsen/docs を参照
 
 ## ライセンス
-(TBD)
+本ソフトウェアは、[MITライセンス](./LICENSE.txt)の元提供されています。
 
 ## 開発者向け情報
 

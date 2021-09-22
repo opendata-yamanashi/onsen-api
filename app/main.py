@@ -6,6 +6,9 @@ import tabula
 import json
 import os
 
+target_url = "https://www.pref.yamanashi.jp/taiki-sui/documents/h3012011.pdf"
+file_name = "h3012011.pdf"
+
 root_path = os.getenv("ROOT_PATH", "")
 app = FastAPI(
     title="温泉利用施設API",
@@ -14,15 +17,15 @@ app = FastAPI(
 
 @app.get("/")
 def read_root():
-    path = "h3012011.pdf"
-    data = get_data(path)
+    download_file(target_url)
+    data = get_data(file_name)
     json_data = data.to_json(orient = 'records')
     return json.loads(json_data)
 
 @app.get("/area/{area}")
 def read_item(area: str):
-    path = "h3012011.pdf"
-    data = get_data(path)
+    download_file(target_url)
+    data = get_data(file_name)
     df_mask = data['市町村名'] == area
     data = data[df_mask]
     json_data = data.to_json(orient = 'records')
@@ -33,6 +36,11 @@ def check_columns(df, previous_df):
     diff1 = set(df.keys()) - set(previous_df.keys())
     diff2 = set(previous_df.keys()) - set(df.keys())
     return (len(diff1) == 0 and len(diff2) == 0)
+
+def download_file(url):
+    data = requests.get(url).content
+    with open(file_name ,mode='wb') as f: # wb でバイト型を書き込める
+        f.write(data)
 
 def get_data(path):
     previous_df = pd.DataFrame()

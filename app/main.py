@@ -1,5 +1,6 @@
 from typing import Optional
 from fastapi import FastAPI
+import requests
 import pandas as pd
 import tabula
 import json

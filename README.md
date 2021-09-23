@@ -25,5 +25,5 @@ $ uvicorn app.main:app --reload
 **docker を使う場合**
 ```bash
 $ docker pull opendata19/fastapi-tabula:latest
-$ docker run --name onsen-api -p 8000:80 -v $(pwd)/app:/app -itd opendata19/fastapi-tabula:latest
+$ docker run -p 8000:80 -v $(pwd)/app:/app -itd opendata19/fastapi-tabula:latest
 ```

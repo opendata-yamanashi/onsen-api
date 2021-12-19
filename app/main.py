@@ -27,7 +27,7 @@ def read_root():
     json_data = data.to_json(orient = 'records')
     return json.loads(json_data)
 
-@app.get("/area/{area}", response_model=OnsenData)
+@app.get("/area/{area}", response_model=List[OnsenData])
 def read_item(area: str):
     data = get_data(target_url)
     df_mask = data['市町村名'] == area

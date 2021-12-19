@@ -1,10 +1,17 @@
-from typing import Optional
+from typing import List
 from fastapi import FastAPI
+from pydantic import BaseModel, Field
 import requests
 import pandas as pd
 import tabula
 import json
 import os
+
+class OnsenData(BaseModel):
+    town: str = Field(None, alias='市町村名')
+    name: str = Field(None, alias='利用施設名称・屋号')
+    address: str = Field(None, alias='利用施設所在地')
+    quality: str = Field(None, alias='現在の利用状況/泉質')
 
 target_url = "https://www.pref.yamanashi.jp/taiki-sui/documents/h3012011.pdf"
 
@@ -14,13 +21,13 @@ app = FastAPI(
     root_path=root_path
 )
 
-@app.get("/")
+@app.get("/", response_model=List[OnsenData])
 def read_root():
     data = get_data(target_url)
     json_data = data.to_json(orient = 'records')
     return json.loads(json_data)
 
-@app.get("/area/{area}")
+@app.get("/area/{area}", response_model=OnsenData)
 def read_item(area: str):
     data = get_data(target_url)
     df_mask = data['市町村名'] == area

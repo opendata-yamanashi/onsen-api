@@ -28,14 +28,14 @@ jobs:
           SSH_HOST: ${{ secrets.SSH_HOST }}
 
       - name: Stop the API container
-        run: ssh production 'docker rm -f onsen-api'
+        run: ssh production "docker rm -f onsen-api"
 
       - name: Check out the latest source
-        run: ssh production 'cd onsen-api && git fetch && git reset --hard origin/main'
+        run: ssh production "cd onsen-api && git fetch && git reset --hard origin/main"
 
       - name: Start the API container
         if: ${{ always() }}
-        run: ssh production 'cd onsen-api && docker run --name onsen-api -p $PORT:80 -e ROOT_PATH=$ROOT_PATH -v $(pwd)/app:/app -itd opendata19/fastapi-tabula:latest'
+        run: ssh production "cd onsen-api && docker run --name onsen-api -p $PORT:80 -e ROOT_PATH=$ROOT_PATH -v $(pwd)/app:/app -itd opendata19/fastapi-tabula:latest"
         env:
           ROOT_PATH: ${{ secrets.API_ROOT_PATH }}
           PORT: ${{ secrets.API_PORT }}

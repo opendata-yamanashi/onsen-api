@@ -16,7 +16,7 @@ jobs:
           echo "$SSH_KEY" > ~/.ssh/production.key
           chmod 600 ~/.ssh/production.key
           cat >>~/.ssh/config <<END
-          Host staging
+          Host production
             HostName $SSH_HOST
             User $SSH_USER
             IdentityFile ~/.ssh/production.key

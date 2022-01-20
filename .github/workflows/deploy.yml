@@ -35,7 +35,7 @@ jobs:
 
       - name: Start the API container
         if: ${{ always() }}
-        run: ssh production "cd onsen-api && docker run --name onsen-api -p $PORT:80 -e ROOT_PATH=$ROOT_PATH -v $(pwd)/app:/app -itd opendata19/fastapi-tabula:latest"
+        run: ssh production "cd onsen-api && docker run --name onsen-api -p $PORT:80 -e ROOT_PATH=$ROOT_PATH -v \$(pwd)/app:/app -itd opendata19/fastapi-tabula:latest"
         env:
           ROOT_PATH: ${{ secrets.API_ROOT_PATH }}
           PORT: ${{ secrets.API_PORT }}

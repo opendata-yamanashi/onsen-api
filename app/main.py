@@ -13,7 +13,7 @@ class OnsenData(BaseModel):
     address: str = Field(None, alias='利用施設所在地')
     quality: str = Field(None, alias='現在の利用状況/泉質')
 
-target_url = "https://www.pref.yamanashi.jp/taiki-sui/documents/h3012011.pdf"
+target_url = "https://www.pref.yamanashi.jp/documents/6051/h3012011.pdf"
 
 root_path = os.getenv("ROOT_PATH", "")
 app = FastAPI(

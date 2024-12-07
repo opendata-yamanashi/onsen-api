@@ -2,7 +2,7 @@
 [![Testing](https://github.com/opendata-yamanashi/onsen-api/actions/workflows/test.yml/badge.svg)](https://github.com/opendata-yamanashi/onsen-api/actions/workflows/test.yml) [![Deploy](https://github.com/opendata-yamanashi/onsen-api/actions/workflows/deploy.yml/badge.svg)](https://github.com/opendata-yamanashi/onsen-api/actions/workflows/deploy.yml)
 
 ## 出典
-- [「山梨県公共温泉利用施設一覧（H30.12.1現在）」（山梨県）](https://www.pref.yamanashi.jp/taiki-sui/documents/h3012011.pdf)
+- [「山梨県公共温泉利用施設一覧（H30.12.1現在）」（山梨県）](https://www.pref.yamanashi.jp/documents/6051/h3012011.pdf)
 
 ## API 仕様
 - https://opendata.yamanashi.dev/api/onsen/docs を参照

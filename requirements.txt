@@ -4,3 +4,4 @@ pandas
 pytest
 tabula-py
 requests
+httpx
